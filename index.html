@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Event Search</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script>
+		// link to my CSS even when hosted off local machine
+		var link = document.createElement("link");
+		link.href = window.location.protocol + "//" + window.location.host + '/static/css/index.css';
+		link.type = "text/css";
+		link.rel = "stylesheet";
+
+		var head = document.getElementsByTagName( "head" )[0];
+		head.appendChild(link);
+	</script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">Concertina Events</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id=link_to_search href="tbc">Event search</a></li>
+				<li><a id=link_to_admin href="tbc">Edit events/venues</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+    	<div class="col-sm-6">
+			<h1>Search</h1>
+			<form>
+				<br><p>Enter keywords and/or dates <small>(YYYY-MM-DD, or full ISO8601 format)</small></p><br>
+				<input id="search_form" class="form-control" type="text" name="search" placeholder="e.g. concertina 2018"><br>
+
+				<div id="search_button" class="btn btn-primary ld-ext-right">
+				  <span id="search_btn_txt">Search</span>
+				  <div class="ld ld-ring ld-spin-fast"></div>
+				</div>
+				<br>
+			</form>
+		</div>
+    	<div class="col-sm-6 " id="events_div" style="display: none;">
+			<h2 style="display: inline-block;">Events</h2>
+				<p id=e_details_msg class="text-muted" style="margin-left: 30px; display: none;">Click on an event for more details about it</p><br>
+			<table class="table table-bordered table-striped" id="event_table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Date</th>
+						<th>Venue</th>
+					</tr>
+				</thead>
+				<tbody id=event_rows></tbody>
+			</table>
+		</div>
+	</div>
+<hr>
+	<div class="row" id="detailsTables" style="display: none;">
+    	<div class="col-sm-6">
+			<h2>Event details: <span id="newEventTitle"></span></h2>
+			<table class="table table-bordered table-striped table-responsive" id="eventDetailsTable" style= "table-layout:fixed; word-wrap: break-word;">
+				<thead>
+					<tr>
+						<th>event_id</th>
+						<th>Date</th>
+						<th>Blurb</th>
+						<th>Url</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id=event_id></td>
+						<td id=event_date></td>
+						<td id=event_blurb></td>
+						<td id=event_url></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+    	<div class="col-sm-6">
+			<h2> Taking Place at: <span id="newVenueName"></span></h2>
+			<table class="table table-bordered table-stripe table-responsived" id="venueDetailsTable" style= "table-layout:fixed; word-wrap: break-word;">
+				<thead>
+					<tr>
+						<th>venue_id</th>
+						<th>Postcode</th>
+						<th>Town</th>
+						<th>Url</th>
+						<th>Icon</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id=venue_id></td>
+						<td id=venue_postcode></td>
+						<td id=venue_town></td>
+						<td id=venue_url></td>
+						<td id=venue_icon></td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+	</div>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js"></script>
+<!-- link my index.js even when hosted off local machine (e.g on cloud) -->
+<script>
+	$(function(){
+		var path = (window.location.protocol + "//" + window.location.host + '/static/index.js');
+		var script	= document.createElement("script");
+		script.type = "text/javascript";
+		script.src  = path;
+		document.body.appendChild(script);
+	});
+</script>
+
+</body>
+
+</html>

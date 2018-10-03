@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Event Admin</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style> 
+		@media only screen and (max-width: 1100px) {.event_form { width:15vw} }
+		@media only screen and (max-width: 430px) {
+			h2		{ font-size : 8vw; 	}
+			p		{ font-size : 5vw;	}
+			table { font-size : 2.5vw; }
+			.event_form { width: 10vw; }
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand">Admin</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id=link_to_search href="tbc">Back to event search page</a></li>
+				<li><a id=link_to_logout href="tbc">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>	
+	
+<div class="container">
+	<div class="row">
+    	<div class="col-sm-12">	
+			<h1>Venues</h1>
+			<p>Click on a venue to add an event to it</p>
+			<table class="table table-bordered table-striped" id="venue_table" style= "table-layout:fixed; word-wrap: break-word;">
+				<thead>	
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Postcode</th>
+						<th>Town</th>
+						<th>Url</th>
+						<th>Icon</th>
+					</tr>
+				</thead>
+				<tbody id="venue_rows" ></tbody>
+			</table>	  
+		</div>
+	</div>
+	<div class="row">
+    	<div class="col-sm-3">	
+			<input id="venue_form_btn" type="submit" class="btn btn-primary" value="Add Venue">
+			<input id="confirm_btn" type="submit" class="btn btn-primary" value="Confirm" style="display:none">
+		</div>
+		<div class="col-sm-9">
+			<br><form id="new_venue_form" style= "display: none;">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Name (required)</span>
+					<input id="new_venue_name" class="form-control" type="text" name="name" value="Footy Stadium">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Postcode</span>
+					<input id="new_venue_postcode" class="form-control" type="text" name="postcode" value="BS6 6JG">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Town</span>
+					<input id="new_venue_town" class="form-control" type="text" name="town" value="Bristol">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Url</span>
+					<input id="new_venue_url" class="form-control" type="text" name="url" value="http://www.mu.co.uk">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Icon Link</span>
+					<input id="new_venue_icon" class="form-control" type="text" name="icon" value="http://www.stadiumguide.com/wp-content/uploads/allianzarena_top-1100x640.jpg">
+				</div>
+			</form><br><br>	
+		</div>
+	</div>
+	<div class="row" id=divForAddingEvents style="display: none;">
+    	<div class="col-sm-12">	
+			<table class="table table-bordered table-striped" id="newEventTable" style= "table-layout:fixed; word-wrap: break-word;"> 
+				<h2> Add an event to: <span id="venue_name"></span></h2>
+				<tr>
+					<th>Event ID</th>
+					<th>Title</th>
+					<th>Blurb</th>
+					<th>Date <small>(in ISO8601 format: eg YYYY-MM-DDT17:00:00Z)</small></th>
+					<th>Url</th>
+				</tr>
+				<tr>
+					<td><input class="event_form" id="new-e-event_id" type="text" name="event_id" value="e_3"></td>
+					<td><input class="event_form" id="new-e-title" type="text" name="title" value="Bongo Wonga"></td>
+					<td><input class="event_form" id="new-e-blurb" type="text" name="blurb" value="blurbyblururby"></td>
+					<td><input class="event_form" id="new-e-date" type="text" name="date" value="2017-04-25T17:00:00Z"></td>
+					<td><input class="event_form" id="new-e-url" type="text" name="url" value="www.eventurlwoo.com"></td>
+				</tr>
+			</table>
+			<input id="addEventButton" type="submit" class="btn btn-primary" value="Add Event To Venue">	
+		</div>
+	</div>
+</div>
+<!-- jQuery -->		
+<script type="text/javascript"     src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- js-cookie	-->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<!-- link my admin.js even when hosted off local machine (e.g on cloud) -->
+<script> 
+	$(function(){
+		var path = (window.location.protocol + "//" + window.location.host + '/static/admin.js');
+		var script	= document.createElement("script");
+		script.type = "text/javascript";
+		script.src  = path;
+		document.body.appendChild(script);
+	});
+</script>
+	
+</body>
+</html>

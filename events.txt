@@ -1,0 +1,16 @@
+{
+   "e_1": {
+      "title": "Swaledale Squeeze 2018",
+      "blurb": "The biggest and best concertina weekend in the world. Held each May in Grinton Lodge YHA, North Yorkshire",
+      "date": "2018-05-21T16:00:00Z",
+      "url": "http://www.swaledalesqueeze.org.uk",
+      "venue_id": "v_1"
+   },
+   "e_2": {
+      "title": "Woop Dee Do",
+      "blurb": "Cool blurb",
+      "date": "2016-02-20T17:00:00Z",
+      "url": "http://www.woopdedoo.org.uk",
+      "venue_id": "v_2"
+   }
+}

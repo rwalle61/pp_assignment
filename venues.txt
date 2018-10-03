@@ -1,0 +1,16 @@
+{
+   "v_1": {
+      "name": "Grinton Lodge Youth Hostel",
+      "postcode": "DL11 6HS",
+      "town": "Richmond",
+      "url": "http://www.yha.org.uk/hostel/grinton-lodge",
+      "icon": "https://www.yha.org.uk/sites/default/files/imagecache/gallery_main/000104_grinton_exterior_001.jpg"
+   },
+   "v_2": {
+      "name": "Sage Gateshead",
+      "postcode": "NE8 2JR",
+      "town": "Gateshead",
+      "url": "http://www.sagegateshead.com/",
+      "icon": "http://www.sagegateshead.com/files/images/pageimage/1683.7123dea7/630x397.fitandcrop.jpg"
+   }
+}

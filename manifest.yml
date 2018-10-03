@@ -1,0 +1,6 @@
+---
+applications:
+- name: concertinas
+  host: rwalle61
+  #random-route: false
+  memory: 256M

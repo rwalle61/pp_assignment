@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Event Search</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		@media only screen and (max-width: 300px) {
+			h1 	{ font-size : 13vw; }
+			form { font-size : 5vw; }
+		}
+	</style>
+</head>
+<body>
+<div class="jumbotron text-center">
+	<h1>Login</h1><br>
+	<form>
+		<small class="form-text text-muted">Enter login to access admin page.</small>
+		<br><br><br>
+		<label for="username" class="form-text text-muted">Username</label>
+		<input id="username" class="form-group" type="text" name="username" value="usernameAdmin"><br>
+		<label for="password" class="form-text text-muted">Password</label>
+		<input id="password" class="form-group" type="text" name="password" value="passwordAdmin"><br><br>
+		<input id="button" type="submit" class="btn btn-primary" value="Login"><br>
+	</form>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript"     src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- js-cookie	-->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<script>
+$(function(){
+
+var baseUrl = (window.location.protocol + "//" + window.location.host + "/events2017");
+console.log(baseUrl);
+
+//on click, login
+$("#button").click(function(e) {
+	e.preventDefault();
+
+	var loginDetails = {username: $("#username").val(), password: $("#password").val()};
+	console.log(loginDetails);
+
+	//attempt login
+	$.post(baseUrl + '/login/submit', loginDetails, "json")
+		.done( token => {
+			console.log("login.html /login/submit data is ");
+			console.log(token.token);
+
+			//forward to admin.html
+			window.location.replace(baseUrl + "/admin.html");
+		})
+		.fail( (xhr, textStatus, errorThrown) => {
+			var errMsg = JSON.parse(xhr.responseText);
+			alert(errMsg.error + " Please try again");
+		});
+
+});
+
+});
+</script>
+
+</body>
+</html>
